@@ -1,3 +1,4 @@
+import argparse
 from socket import socket, AF_INET, SOCK_STREAM
 from multiprocessing import Process, Queue
 import time
@@ -42,5 +43,9 @@ def start_server(host='localhost', port=8080):
 
 
 if __name__ == "__main__":
-    start_server()
+    parser = argparse.ArgumentParser(description="Servidor TCP")
+    parser.add_argument("port", type=int, help="Puerto de escucha")
+    args = parser.parse_args()
+
+    start_server(port=args.port)
 # Este es un servidor que utiliza multiprocessing para manejar múltiples conexiones simultáneamente.
